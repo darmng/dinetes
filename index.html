@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8"/>
+  <title>És dinetes?</title>
+  <meta name="HandheldFriendly" content="True"/>
+  <meta name="MobileOptimized" content="320"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="cache-control" content="mag-age=86400" />
+  <link href="https://fonts.googleapis.com/css?family=Bungee Shade" rel="stylesheet" />
+  <style type="text/css">
+    
+  @keyframes crazyShit {
+  0% {background-color: #64e820}
+  25% {background-color: #ced600}
+  50% {background-color: #ed4917}
+  75% {background-color: #eb17b0}
+  100% {background-color: #2a26e0}
+  }
+  
+  @-webkit-keyframes crazyShit {
+  0% {background-color: #64e820}
+  25% {background-color: #ced600}
+  50% {background-color: #ed4917}
+  75% {background-color: #eb17b0}
+  100% {background-color: #2a26e0}
+  }
+
+  .crazy {
+  background-color: #64e820;
+  animation: crazyShit 2s infinite alternate;
+  -webkit-animation: crazyShit 2s infinite alternate;
+  font: 10vw "Bungee Shade",cursive;
+  color: black;
+  }
+    
+  #result {
+  margin: 20vh auto auto auto;
+  text-align: center;
+  }
+
+  body {
+  background-color: #222222;
+  font: 10vw sans-serif;
+  color: #666666;
+  
+  }
+  
+</style>
+<script>
+
+function days(start, end) {
+    var msDay = 24 * 60 * 60 * 1000;
+    return Math.floor((end - start) / msDay);
+}
+
+function aesday(date) {
+    var epoch = new Date('2017-12-21');
+    return days(epoch,date)%8 == 0;
+    
+}
+
+function load() {
+	today = new Date();
+    
+	if (aesday(today) == true)
+    {
+document.getElementById("result").innerHTML = "Oh, yes!";
+document.getElementById("body").className = "crazy";
+    }
+    
+
+}
+</script>
+
+</head>
+<body id="body" onload="load()">
+    
+    <div id="result">
+      No.
+    </div>
+
+
+</body>
+</html>
