@@ -49,9 +49,17 @@
 </style>
 <script>
 
+function toUTC(date)
+{
+    return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());    
+}
+
 function days(start, end) {
     var msDay = 24 * 60 * 60 * 1000;
-    return Math.floor((end - start) / msDay);
+
+    // Not all days have msDays ms. Some of them have 23 or 25 hours (Daylight Savings).
+    // toUTC fixes this.
+    return (toUTC(end) - toUTC(start)) / msDay;
 }
 
 function aesday(date) {
@@ -61,15 +69,13 @@ function aesday(date) {
 }
 
 function load() {
-	today = new Date();
+    today = new Date();
     
-	if (aesday(today) == true)
+    if (aesday(today) == true)
     {
-document.getElementById("result").innerHTML = "Oh yes!";
-document.getElementById("body").className = "crazy";
-    }
-    
-
+	document.getElementById("result").innerHTML = "Oh yes!";
+	document.getElementById("body").className = "crazy";
+    }    
 }
 </script>
 
@@ -79,7 +85,8 @@ document.getElementById("body").className = "crazy";
     <div id="result">
       No.
     </div>
-
+    <div id="lorem">
+      </div>
 
 </body>
 </html>
