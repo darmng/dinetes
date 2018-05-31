@@ -69,7 +69,8 @@ function days(start, end) {
 }
 
 function addDays(date, days) {
-    return date.setDate(date.getDate()+days);
+    var result = new Date(date);
+    return result.setDate(date.getDate()+days);
 }
 
 function aesday(date) {
