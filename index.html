@@ -33,10 +33,14 @@
   font: 10vw "Bungee Shade",cursive;
   color: black;
   }
-    
-  #result {
+  
+  #wrapper {
   margin: 20vh auto auto auto;
   text-align: center;
+  }
+
+  #next {
+  font-size: 18pt; 
   }
 
   body {
@@ -48,6 +52,8 @@
   
 </style>
 <script>
+
+var epoch = new Date('2017-12-21');
 
 function toUTC(date)
 {
@@ -62,31 +68,44 @@ function days(start, end) {
     return (toUTC(end) - toUTC(start)) / msDay;
 }
 
-function aesday(date) {
-    var epoch = new Date('2017-12-21');
-    return days(epoch,date)%8 == 0;
-    
+function addDays(date, days) {
+    var result = new Date(date);
+    return result.setDate(date.getDate()+days);
 }
 
+function aesday(date) {
+    return days(epoch,date)%8 == 0;
+}
+
+
+function nextAesday(date) {
+    return addDays(epoch,(Math.floor(days(epoch,date)/8)+1)*8);  
+}
+
+
 function load() {
-    today = new Date();
+    var today = new Date();
+    var next = new Date(nextAesday(today));
     
     if (aesday(today) == true)
     {
 	document.getElementById("result").innerHTML = "Oh yes!";
 	document.getElementById("body").className = "crazy";
-    }    
+    } else {
+	var options = {month: "long", day: "numeric"};
+	document.getElementById("next").innerHTML = "(el pròxim és el " + next.toLocaleDateString("ca-ES",options) + ")";
+    }
 }
 </script>
 
 </head>
+
 <body id="body" onload="load()">
-    
+  <div id="wrapper">
     <div id="result">
       No.
     </div>
-    <div id="lorem">
-      </div>
-
+    <div id="next"></div>
+  </div>
 </body>
 </html>
