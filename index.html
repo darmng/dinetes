@@ -9,7 +9,7 @@
   <meta name="cache-control" content="mag-age=86400" />
   <link href="https://fonts.googleapis.com/css?family=Bungee Shade" rel="stylesheet" />
   <style type="text/css">
-    
+
   @keyframes crazyShit {
   0% {background-color: #64e820}
   25% {background-color: #ced600}
@@ -17,7 +17,7 @@
   75% {background-color: #eb17b0}
   100% {background-color: #2a26e0}
   }
-  
+
   @-webkit-keyframes crazyShit {
   0% {background-color: #64e820}
   25% {background-color: #ced600}
@@ -33,23 +33,23 @@
   font: 10vw "Bungee Shade",cursive;
   color: black;
   }
-  
+
   #wrapper {
   margin: 20vh auto auto auto;
   text-align: center;
   }
 
   #next {
-  font-size: 18pt; 
+  font-size: 18pt;
   }
 
   body {
   background-color: #222222;
   font: 10vw sans-serif;
   color: #666666;
-  
+
   }
-  
+
 </style>
 <script>
 
@@ -57,7 +57,7 @@ var epoch = new Date('2017-12-21');
 
 function toUTC(date)
 {
-    return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());    
+    return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 function days(start, end) {
@@ -79,21 +79,25 @@ function aesday(date) {
 
 
 function nextAesday(date) {
-    return addDays(epoch,(Math.floor(days(epoch,date)/8)+1)*8);  
+    return addDays(epoch,(Math.floor(days(epoch,date)/8)+1)*8);
 }
-
 
 function load() {
     var today = new Date();
     var next = new Date(nextAesday(today));
-    
+
     if (aesday(today) == true)
     {
-	document.getElementById("result").innerHTML = "Oh yes!";
-	document.getElementById("body").className = "crazy";
+	     document.getElementById("result").innerHTML = "Oh yes!";
+	     document.getElementById("body").className = "crazy";
     } else {
-	var options = {month: "long", day: "numeric"};
-	document.getElementById("next").innerHTML = "(el pròxim és el " + next.toLocaleDateString("ca-ES",options) + ")";
+	     var options = {month: "long", day: "numeric"};
+       if(today.getDate() + 1 == next.getDate()) // Tomorrow?
+       {
+	        document.getElementById("next").innerHTML = "(el pròxim és demà)";
+       } else {
+          document.getElementById("next").innerHTML = "(el pròxim és el " + next.toLocaleDateString("ca-ES",options) + ")";
+       }
     }
 }
 </script>
