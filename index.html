@@ -91,12 +91,15 @@ function load() {
 	     document.getElementById("result").innerHTML = "Oh yes!";
 	     document.getElementById("body").className = "crazy";
     } else {
-	     var options = {month: "long", day: "numeric"};
        if(today.getDate() + 1 == next.getDate()) // Tomorrow?
        {
 	        document.getElementById("next").innerHTML = "(el pròxim és demà)";
-       } else {
+       } else if(today.getDay() == 0) { // Today is Sunday?
+          var options = {month: "long", day: "numeric"};
           document.getElementById("next").innerHTML = "(el pròxim és el " + next.toLocaleDateString("ca-ES",options) + ")";
+       } else {
+         var options = {weekday: "long"};
+         document.getElementById("next").innerHTML = "(el pròxim és aquest " + next.toLocaleDateString("ca-ES",options) + ")";
        }
     }
 }
